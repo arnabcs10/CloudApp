@@ -4,6 +4,8 @@
   "description": "An API server to test HTTPRoutes and Gateways",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "arnabcs10",
