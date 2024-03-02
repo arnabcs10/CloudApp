@@ -7,7 +7,7 @@ const colors = require('colors');
 
 
 //Middlewares
-// const { notFound,errorHandler} = require('./middlewares/errorMiddleware');
+const { notFound,errorHandler} = require('./middlewares/errorMiddlewares');
 
 //App config
 const app = express();
@@ -35,8 +35,8 @@ if(process.env.ENV === 'PRD'){
 
 
 //error handler
-// app.use(notFound);
-// app.use(errorHandler);
+app.use(notFound);
+app.use(errorHandler);
 
 //PORT
 const PORT = process.env.PORT || 5000;
