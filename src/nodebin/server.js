@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const colors = require('colors');
 
 // Import Routes
-
+const helloRoutes = require('./routes/helloRoutes');
 
 //Middlewares
 const { notFound,errorHandler} = require('./middlewares/errorMiddlewares');
@@ -17,9 +17,14 @@ app.use(express.json()) //body-parser
 
 
 //Routes
-//Home
+//Default Routes
+// To be moved to its own directory
+app.get('/api',(req,res)=>{
+    res.send("This is HOME!!");
+});
 
-// /api/route/
+// Hello Routes
+app.use('/api/hello',helloRoutes);
 
 
 
