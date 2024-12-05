@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const colors = require('colors');
 
 // Import Routes
-const helloRoutes = require('./routes/helloRoutes');
+const helloRoutes = require('./routes/hello/helloRoutes');
 
 //Middlewares
 const { notFound,errorHandler} = require('./middlewares/errorMiddlewares');

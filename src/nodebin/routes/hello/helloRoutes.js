@@ -5,7 +5,7 @@ const router = express.Router();
 const {
     getHello, 
     getHelloEntity
-} = require('../controller/helloController');
+} = require('../../controller/hello/helloController');
 
 
 //routes /api/hello/
