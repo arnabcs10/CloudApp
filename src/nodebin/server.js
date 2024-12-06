@@ -5,6 +5,7 @@ const colors = require('colors');
 
 // Import Routes
 const helloRoutes = require('./routes/hello/helloRoutes');
+const httpbinRoutes = require('./routes/httpbin/httpbinRoutes');
 
 //Middlewares
 const { notFound,errorHandler} = require('./middlewares/errorMiddlewares');
@@ -25,6 +26,7 @@ app.get('/api',(req,res)=>{
 
 // Hello Routes
 app.use('/api/hello',helloRoutes);
+app.use('/api/httpbin',httpbinRoutes);
 
 
 
