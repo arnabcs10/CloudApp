@@ -1,0 +1,43 @@
+istiod:
+  revision: stable
+  istio_cni:
+    enabled: true
+  pilot:
+    image: pilot
+    resources:
+      requests:
+        cpu: 500m
+        memory: 2048Mi
+  global:
+    hub: docker.io/istio
+    tag: 1.20.1
+    imagePullPolicy: ""
+    defaultResources:
+      requests:
+        cpu: 10m
+        memory: 128Mi
+  proxy:
+    image: proxyv2
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 2000m
+        memory: 1024Mi
+  proxy_init:
+    image: proxyv2
+
+  meshConfig:
+    outboundTrafficPolicy:
+      mode: ALLOW_ANY
+
+cni:
+  revision: stable
+  cni:
+    resourceQuotas:
+      enabled: true
+    excludeNamespaces:
+      - istio-system
+      - kube-system
+      - istio-gateway

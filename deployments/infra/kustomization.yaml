@@ -1,0 +1,12 @@
+helmGlobals:
+  chartHome: ../../addons
+
+helmCharts:
+  - name: istio
+    releaseName: istio
+    version: 1.22.6
+    namespace: istio-system
+    includeCRDs: true
+    valuesInline:
+      revision: stable
+    valuesFile: "./istio.yaml"
