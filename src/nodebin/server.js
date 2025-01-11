@@ -6,6 +6,7 @@ const colors = require('colors');
 // Import Routes
 const helloRoutes = require('./routes/hello/helloRoutes');
 const httpbinRoutes = require('./routes/httpbin/httpbinRoutes');
+const httpbinextRoutes = require('./routes/httpbinext/httpbinRoutes');
 
 //Middlewares
 const { notFound,errorHandler} = require('./middlewares/errorMiddlewares');
@@ -27,6 +28,7 @@ app.get('/api',(req,res)=>{
 // Hello Routes
 app.use('/api/hello',helloRoutes);
 app.use('/api/httpbin',httpbinRoutes);
+app.use('/api/httpbinext',httpbinextRoutes);
 
 
 
@@ -49,5 +51,6 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT,() =>{
+    console.log(process.env.HTTPBINEXT_URI);
     console.log(`Server running in ${process.env.ENV} mode on port ${PORT}`.yellow.bold);
 });
