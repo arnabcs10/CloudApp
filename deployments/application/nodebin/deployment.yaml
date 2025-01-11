@@ -21,11 +21,11 @@ spec:
         - containerPort: 5000
         env:
         - name: HTTPBIN_URI
-          value: "https://httpbin.org/"
+          value: "http://httpbin-svc.ns-httpbin.svc.cluster.local"
         resources:
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "100m"
 
 ---
 apiVersion: v1

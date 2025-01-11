@@ -1,0 +1,14 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: test-pod
+spec:
+  containers:
+  - name: test-pod
+    image: nginx
+    resources:
+      limits:
+        memory: "64Mi"
+        cpu: "100m"
+
+# curl http://nodebin-svc.ns-nodebin.svc.cluster.local:5000/api/httpbin/html
