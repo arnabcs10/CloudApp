@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodebin
-  namespace: ns-kcl-nodebin
+  namespace: ns-nodebin
 spec:
   selector:
     matchLabels:
@@ -15,10 +15,13 @@ spec:
     spec:
       containers:
       - name: nodebin
-        image: arnabcs10/nodebin:v1.0.0
+        image: arnabcs10/nodebin:v2.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
+        env:
+        - name: HTTPBIN_URI
+          value: "https://httpbin.org/"
         resources:
           limits:
             memory: "128Mi"
@@ -29,7 +32,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nodebin-svc
-  namespace: ns-kcl-nodebin
+  namespace: ns-nodebin
 spec:
   selector:
     app: nodebin
