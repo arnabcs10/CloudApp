@@ -1,16 +1,24 @@
 istiod:
   revision: stable
   istio_cni:
-    enabled: true
+    enabled: false
   pilot:
     image: pilot
+    tag: 1.21.6-distroless
     resources:
       requests:
         cpu: 500m
         memory: 2048Mi
+    seccompProfile:
+      type: RuntimeDefault
+    env:
+      AUTO_RELOAD_PLUGIN_CERTS: true
+      ENABLE_EXTERNAL_NAME_ALIAS: "false"
+      VERIFY_CERTIFICATE_AT_CLIENT: "false"
+      ENABLE_AUTO_SNI: "false"
   global:
     hub: docker.io/istio
-    tag: 1.20.1
+    tag: 1.21.6-distroless
     imagePullPolicy: ""
     defaultResources:
       requests:
@@ -18,6 +26,7 @@ istiod:
         memory: 128Mi
   proxy:
     image: proxyv2
+    tag: 1.21.6-distroless
     resources:
       requests:
         cpu: 100m
@@ -30,13 +39,16 @@ istiod:
 
   meshConfig:
     outboundTrafficPolicy:
-      mode: ALLOW_ANY
+      mode: REGISTRY_ONLY
 
 cni:
   revision: stable
+  hub: docker.io/istio
+  tag: 1.21.6-distroless
   cni:
     resourceQuotas:
       enabled: true
+    cniBinDir: "/home/kubernetes/bin"
     excludeNamespaces:
       - istio-system
       - kube-system
