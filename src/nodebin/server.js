@@ -26,7 +26,7 @@ app.get('/api',(req,res)=>{
 });
 
 // Hello Routes
-app.use('/api/hello',helloRoutes);
+app.use('/api/v1',helloRoutes);
 app.use('/api/httpbin',httpbinRoutes);
 app.use('/api/httpbinext',httpbinextRoutes);
 

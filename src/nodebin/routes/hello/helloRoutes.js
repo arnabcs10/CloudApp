@@ -4,13 +4,15 @@ const router = express.Router();
 // import controllers
 const {
     getHello, 
-    getHelloEntity
+    getHelloEntity,
+    getJwks
 } = require('../../controller/hello/helloController');
 
 
 //routes /api/hello/
 router.route('/').get( getHello);
-router.route('/:entity').get( getHelloEntity);
+router.route('/hello/:entity').get( getHelloEntity);
+router.route('/jwks').get( getJwks);
 
 
 module.exports = router;
