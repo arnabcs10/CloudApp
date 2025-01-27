@@ -13,6 +13,7 @@ COPY . .
 
 # Expose ports
 EXPOSE 5000
+EXPOSE 8443
 EXPOSE 443
 
 CMD [ "npm", "start" ]
