@@ -19,13 +19,28 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
+        - containerPort: 443
+        volumeMounts:
+        - name: tls-secret
+          mountPath: /etc/tls
+          readOnly: true
         env:
+        - name: TLS_CERT_FILE
+          value: "/etc/tls/tls.crt"
+        - name: TLS_KEY_FILE
+          value: "/etc/tls/tls.key"
+        - name: ENV
+          value: "PRD"
         - name: HTTPBIN_URI
           value: "http://httpbin-svc.ns-httpbin.svc.cluster.local"
         resources:
           limits:
             memory: "128Mi"
             cpu: "100m"
+      volumes:
+      - name: tls-secret
+        secret:
+          secretName: tls-secret
 
 ---
 apiVersion: v1
@@ -40,3 +55,10 @@ spec:
   ports:
   - port: 5000
     targetPort: 5000
+    protocol: TCP
+    name: http
+  - port: 443
+    targetPort: 443
+    protocol: TCP
+    name: https
+
