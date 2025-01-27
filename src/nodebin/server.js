@@ -1,5 +1,7 @@
 //Import dependencies
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
 const dotenv = require('dotenv');
 const colors = require('colors');
 
@@ -49,8 +51,23 @@ app.use(errorHandler);
 
 //PORT
 const PORT = process.env.PORT || 5000;
+const HTTPS_PORT = process.env.HTTPS_PORT || 443;
+
 
 app.listen(PORT,() =>{
     console.log(process.env.HTTPBINEXT_URI);
     console.log(`Server running in ${process.env.ENV} mode on port ${PORT}`.yellow.bold);
 });
+
+// HTTPS Server
+// Read the certificate and key file from environment variables
+if (process.env.ENV === 'PRD') {
+    const httpsOptions = {
+        key: fs.readFileSync(process.env.TLS_KEY_FILE),
+        cert: fs.readFileSync(process.env.TLS_CERT_FILE),
+    };
+
+    https.createServer(httpsOptions, app).listen(HTTPS_PORT, () => {
+        console.log(`Server running in ${process.env.ENV} mode on port ${HTTPS_PORT}`.yellow.bold);
+    });
+}
